@@ -13,6 +13,8 @@ Summary: The Lumina Desktop Environment
 URL: http://lumina-desktop.org/
 License: BSD
 Group: Graphical desktop/KDE
+BuildRequires: qmake5
+BuildRequires: git-core
 BuildRequires: cmake(Qt5Core)
 BuildRequires: cmake(Qt5Concurrent)
 BuildRequires: cmake(Qt5Gui)
@@ -21,6 +23,10 @@ BuildRequires: cmake(Qt5Svg)
 BuildRequires: cmake(Qt5Multimedia)
 BuildRequires: cmake(Qt5MultimediaWidgets)
 BuildRequires: cmake(Qt5Network)
+BuildRequires: cmake(Qt5X11Extras)
+BuildRequires: pkgconfig(xcb-ewmh)
+BuildRequires: pkgconfig(xcb-atom)
+BuildRequires: pkgconfig(xcb-image)
 
 # Desktop requirements
 Requires: %{name}-open = %{EVRD}
