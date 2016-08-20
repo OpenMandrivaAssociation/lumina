@@ -1,13 +1,12 @@
 %define debug_package %{nil}
+%define ver 1.0.0
+%define patchlevel 2
 
 Name: lumina
-Version: 1.0.0
+Version: %{ver}%{?patchlevel:p%{patchlevel}}
 Release: 1
-# Packaged directly from their git tree at
-# http://github.com/trueos/lumina.git
-# (the build will fail without .git/ packaged!)
-Source0: %{name}-%{version}.tar.xz
-Source1: https://github.com/trueos/lumina-i18n/archive/v%{version}-Release.tar.gz
+Source0: https://github.com/trueos/lumina/archive/v%{ver}-Release%{?patchlevel:-p%{patchlevel}}.tar.gz
+Source1: https://github.com/trueos/lumina-i18n/archive/v%{ver}-Release.tar.gz
 Patch0: lumina-1.0.0-defaults.patch
 Summary: The Lumina Desktop Environment
 URL: http://lumina-desktop.org/
@@ -165,7 +164,7 @@ This package provides lumina-fileinfo, which is an
 advanced desktop file (menu) editor.
 
 %prep
-%setup -qn lumina -a 1
+%setup -qn lumina-%{ver}-Release%{?patchlevel:-p%{patchlevel}} -a 1
 %apply_patches
 qmake-qt5 CONFIG+=configure PREFIX=%{_prefix} LIBPREFIX=%{_libdir} L_LIBDIR=%{_libdir} L_ETCDIR=%{_sysconfdir}
 
