@@ -1,13 +1,15 @@
 %define debug_package %{nil}
-%define ver 1.0.0
-%define patchlevel 2
+%define ver 1.1.0
+%define patchlevel 1
 
 Name: lumina
 Version: %{ver}%{?patchlevel:p%{patchlevel}}
 Release: 1
-Source0: https://github.com/trueos/lumina/archive/v%{ver}-Release%{?patchlevel:-p%{patchlevel}}.tar.gz
-Source1: https://github.com/trueos/lumina-i18n/archive/v%{ver}-Release.tar.gz
+Source0: https://github.com/trueos/lumina/archive/v%{ver}%{?patchlevel:-p%{patchlevel}}.tar.gz
+# No 1.1.0 release as of Oct 25, 2016
+Source1: https://github.com/trueos/lumina-i18n/archive/v1.0.0-Release.tar.gz
 Patch0: lumina-1.0.0-defaults.patch
+Patch1: lumina-1.1.0p1-no-isystem-usr-include.patch
 Summary: The Lumina Desktop Environment
 URL: http://lumina-desktop.org/
 License: BSD
@@ -29,6 +31,7 @@ BuildRequires: pkgconfig(xcb-image)
 
 # Desktop requirements
 Requires: %{name}-open = %{EVRD}
+Requires: %{name}-calculator = %{EVRD}
 Requires: %{name}-config = %{EVRD}
 Requires: %{name}-fm = %{EVRD}
 Requires: %{name}-screenshot = %{EVRD}
@@ -84,6 +87,14 @@ This package provides lumina-open, which handles opening of
 files and URLs according to the system-wide mimetype association.
 It also provides an optional selector if more than one application
 is assigned with the given url or file type.
+
+%package calculator
+Summary:            Calculator for Lumina Desktop
+Group:              Graphical desktop/KDE
+
+%description calculator
+This package provides lumina-calculator, a calculator for the
+Lumina desktop
 
 %package config
 Summary:            Configuration utility for Lumina Desktop
@@ -164,7 +175,7 @@ This package provides lumina-fileinfo, which is an
 advanced desktop file (menu) editor.
 
 %prep
-%setup -qn lumina-%{ver}-Release%{?patchlevel:-p%{patchlevel}} -a 1
+%setup -qn lumina-%{ver}%{?patchlevel:-p%{patchlevel}} -a 1
 %apply_patches
 qmake-qt5 CONFIG+=configure PREFIX=%{_prefix} LIBPREFIX=%{_libdir} L_LIBDIR=%{_libdir} L_ETCDIR=%{_sysconfdir}
 
@@ -219,6 +230,8 @@ done
 %{_datadir}/lumina-desktop/colors/Grey-Dark.qss.colors
 %{_datadir}/lumina-desktop/colors/Solarized-Dark.qss.colors
 %{_datadir}/lumina-desktop/colors/Solarized-Light.qss.colors
+%{_datadir}/lumina-desktop/globs2
+%{_datadir}/lumina-desktop/low-battery.ogg
 %dir %{_datadir}/lumina-desktop/themes
 %{_datadir}/lumina-desktop/themes/Lumina-default.qss.template
 %{_datadir}/lumina-desktop/themes/Glass.qss.template
@@ -239,6 +252,10 @@ done
 
 %files open -f lumina-open.lang
 %{_bindir}/lumina-open
+
+%files calculator
+%{_bindir}/lumina-calculator
+%{_datadir}/applications/lumina-calculator.desktop
 
 %files config -f lumina-config.lang
 %{_bindir}/lumina-config

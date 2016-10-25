@@ -1,0 +1,11 @@
+--- lumina-1.1.0-p1/src-qt5/OS-detect.pri.omv~	2016-10-25 23:47:57.206308218 +0200
++++ lumina-1.1.0-p1/src-qt5/OS-detect.pri	2016-10-25 23:48:06.537257653 +0200
+@@ -82,7 +82,7 @@ isEmpty(OS){
+   message( $$MSG )
+ 
+   # Setup the dirs needed to find/load libraries
+-  INCLUDEPATH +=$${PREFIX}/include 
++  #INCLUDEPATH +=$${PREFIX}/include 
+ 
+   # If the detailed install variables are not set - create them from the general vars
+   isEmpty(L_BINDIR){ L_BINDIR = $${PREFIX}/bin }
