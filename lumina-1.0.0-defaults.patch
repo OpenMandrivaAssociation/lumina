@@ -1,41 +1,50 @@
---- lumina/src-qt5/core/lumina-desktop/defaults/luminaDesktop.conf.omv~	2016-08-19 00:54:34.953935195 +0200
-+++ lumina/src-qt5/core/lumina-desktop/defaults/luminaDesktop.conf	2016-08-19 00:58:38.284856483 +0200
-@@ -24,18 +24,24 @@ session_playlogoutaudio=true #[true/fals
+--- lumina-1.2.0-p1/src-qt5/core/lumina-desktop/defaults/luminaDesktop.conf.0000~	2017-01-06 15:07:19.000000000 +0100
++++ lumina-1.2.0-p1/src-qt5/core/lumina-desktop/defaults/luminaDesktop.conf	2017-05-26 19:08:07.056528496 +0200
+@@ -24,26 +24,42 @@ session_playlogoutaudio=true #[true/fals
  # *.desktop files provide better support for input formats, and are recommended
  #Note: the last "ifexists" entry has the highest priority for each session utility
  session_default_terminal_ifexists=xterm.desktop
++session_default_terminal_ifexists=org.kde.konsole.desktop
 +session_default_terminal_ifexists=qterminal.desktop
  session_default_terminal_ifexists=lumina-terminal.desktop
  session_default_filemanager=lumina-fm.desktop
- session_default_webbrowser_ifexists=chromium-browser.desktop
+-session_default_webbrowser_ifexists=chromium-browser.desktop
  session_default_webbrowser_ifexists=firefox.desktop
++session_default_webbrowser_ifexists=chromium-browser.desktop
  session_default_webbrowser_ifexists=qupzilla.desktop
-+session_default_email_ifexists=thunderbird.desktop
-+session_default_email_ifexists=kmail.desktop
++session_default_email_ifexists=org.kde.kmail.desktop
  session_default_email_ifexists=trojita.desktop
  
  #DEFAULT UTILITIES FOR INDIVIDUAL MIME TYPES
  # Format: mime_default_<mimetype>[_ifexists]=<*.desktop file>
-+mime_default_text/*_ifexists=kwrite.desktop
++mime_default_text/*_ifexists=org.kde.kwrite.desktop
++mime_default_text/*_ifexists=org.kde.kate.desktop
  mime_default_text/*_ifexists=lumina-textedit.desktop
  mime_default_audio/*_ifexists=vlc.desktop
-+mime_default_audio/*_ifexists=smplayer.desktop
  mime_default_video/*_ifexists=vlc.desktop
-+mime_default_video/*_ifexists=smplayer.desktop
- mime_default_application/zip_ifexists=peazip.desktop
- mime_default_application/x-compressed-tar_ifexists=peazip.desktop
- mime_default_application/x-bzip-compressed-tar_ifexists=peazip.desktop
-@@ -43,7 +49,9 @@ mime_default_application/x-lrzip-compres
- mime_default_application/x-lzma-compressed-tar_ifexists=peazip.desktop
- mime_default_application/x-xz-compressed-tar_ifexists=peazip.desktop
- mime_default_application/x-tar_ifexists=peazip.desktop
-+mime_default_unknown/*=kwrite.desktop
++mime_default_application/zip_ifexists=org.kde.ark.desktop
+ mime_default_application/zip_ifexists=lumina-archiver.desktop
++mime_default_application/x-compressed-tar_ifexists=org.kde.ark.desktop
+ mime_default_application/x-compressed-tar_ifexists=lumina-archiver.desktop
++mime_default_application/x-bzip-compressed-tar_ifexists=org.kde.ark.desktop
+ mime_default_application/x-bzip-compressed-tar_ifexists=lumina-archiver.desktop
++mime_default_application/x-lrzip-compressed-tar_ifexists=org.kde.ark.desktop
+ mime_default_application/x-lrzip-compressed-tar_ifexists=lumina-archiver.desktop
++mime_default_application/x-lzma-compressed-tar_ifexists=org.kde.ark.desktop
+ mime_default_application/x-lzma-compressed-tar_ifexists=lumina-archiver.desktop
++mime_default_application/x-xz-compressed-tar_ifexists=org.kde.ark.desktop
+ mime_default_application/x-xz-compressed-tar_ifexists=lumina-archiver.desktop
++mime_default_application/x-tar_ifexists=org.kde.ark.desktop
+ mime_default_application/x-tar_ifexists=lumina-archiver.desktop
++mime_default_unknown/*=org.kde.kwrite.desktop
++mime_default_unknown/*=org.kde.kate.desktop
  mime_default_unknown/*=lumina-textedit.desktop
-+mime_default_application/x-shellscript=kwrite.desktop
++mime_default_application/x-shellscript=org.kde.kwrite.desktop
++mime_default_application/x-shellscript=org.kde.kate.desktop
  mime_default_application/x-shellscript=lumina-textedit.desktop
  
  #THEME SETTINGS
-@@ -86,10 +94,10 @@ favorites_add_ifexists=firefox.desktop
+@@ -86,10 +102,10 @@ favorites_add_ifexists=firefox.desktop
  favorites_add_ifexists=chromium-browser.desktop
  favorites_add_ifexists=qupzilla.desktop
  favorites_add_ifexists=thunderbird.desktop

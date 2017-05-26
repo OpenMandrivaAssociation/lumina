@@ -1,12 +1,12 @@
 %define debug_package %{nil}
-%define ver 1.1.0
+%define ver 1.2.0
 %define patchlevel 1
 
 Name: lumina
 Version: %{ver}%{?patchlevel:p%{patchlevel}}
 Release: 1
 Source0: https://github.com/trueos/lumina/archive/v%{ver}%{?patchlevel:-p%{patchlevel}}.tar.gz
-# No 1.1.0 release as of Oct 25, 2016
+# No 1.1.0 or even 1.2.0 release as of May 26, 2017
 Source1: https://github.com/trueos/lumina-i18n/archive/v1.0.0-Release.tar.gz
 Patch0: lumina-1.0.0-defaults.patch
 Patch1: lumina-1.1.0p1-no-isystem-usr-include.patch
@@ -28,9 +28,12 @@ BuildRequires: cmake(Qt5X11Extras)
 BuildRequires: pkgconfig(xcb-ewmh)
 BuildRequires: pkgconfig(xcb-atom)
 BuildRequires: pkgconfig(xcb-image)
+Obsoletes: %{mklibname LuminaUtils 1} < %{EVRD}
+Obsoletes: %{mklibname -d LuminaUtils} < %{EVRD}
 
 # Desktop requirements
 Requires: %{name}-open = %{EVRD}
+Requires: %{name}-archiver = %{EVRD}
 Requires: %{name}-calculator = %{EVRD}
 Requires: %{name}-config = %{EVRD}
 Requires: %{name}-fm = %{EVRD}
@@ -45,9 +48,6 @@ Requires: fluxbox
 
 Suggests: qupzilla
 Suggests: kmail
-
-%libpackage LuminaUtils 1
-%define devpkg %{mklibname -d LuminaUtils}
 
 %description
 The Lumina Desktop Environment is a lightweight system interface designed
@@ -69,14 +69,13 @@ available with other desktop environments.
 All of this results in a very lightweight, customizable, and smooth desktop
 experience with minimal system overhead.
 
-%package -n %{devpkg}
-Summary:            Development libraries for Lumina Desktop
-Group:              Development/C++
+%package archiver
+Summary:            Graphical archiver for the Lumina Desktop
+Group:              Graphical desktop/KDE
 
-%description -n %{devpkg}
-This package provides the files needed to develop plugins
-or extensions for the Lumina Desktop Environment, or
-to develop applications that use Lumina Desktop libraries.
+%description archiver
+This package provides lumina-archiver, which handles opening of
+tar and zip files
 
 %package open
 Summary:            xdg-open style utility for Lumina Desktop
@@ -195,15 +194,6 @@ for i in *.qm; do
 	echo "%lang($L) %%{_datadir}/lumina-desktop/i18n/$i" >>$SRC/$F.lang
 done
 
-%files -n %{devpkg}
-%{_libdir}/libLuminaUtils.so
-%{_includedir}/LuminaXDG.h
-%{_includedir}/LuminaUtils.h
-%{_includedir}/LuminaX11.h
-%{_includedir}/LuminaThemes.h
-%{_includedir}/LuminaOS.h
-%{_includedir}/LuminaSingleApplication.h
-
 %files -f lumina-desktop.lang
 %{_bindir}/lumina-desktop
 %{_bindir}/start-lumina-desktop
@@ -249,6 +239,10 @@ done
 %{_datadir}/wallpapers/Lumina-DE/Lumina_Wispy_red.jpg
 %{_datadir}/applications/lumina-support.desktop
 %dir %{_datadir}/lumina-desktop/i18n
+
+%files archiver
+%{_bindir}/lumina-archiver
+%{_datadir}/applications/lumina-archiver.desktop
 
 %files open -f lumina-open.lang
 %{_bindir}/lumina-open
