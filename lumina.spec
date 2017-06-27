@@ -180,6 +180,7 @@ advanced desktop file (menu) editor.
 %package mediaplayer
 Summary:            Media player for Lumina Desktop
 Group:              Graphical desktop/KDE
+Suggests:           pianobar
 
 %description mediaplayer
 This package provides lumina-mediaplayer, which is a simple
