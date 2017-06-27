@@ -1,11 +1,15 @@
 %define debug_package %{nil}
-%define ver 1.2.0
-%define patchlevel 1
+%define ver 1.3.0
+%define patchlevel %{nil}
 
 Name: lumina
 Version: %{ver}%{?patchlevel:p%{patchlevel}}
 Release: 1
+%if "%{patchlevel}" != ""
 Source0: https://github.com/trueos/lumina/archive/v%{ver}%{?patchlevel:-p%{patchlevel}}.tar.gz
+%else
+Source0: https://github.com/trueos/lumina/archive/v%{ver}.tar.gz
+%endif
 # No 1.1.0 or even 1.2.0 release as of May 26, 2017
 Source1: https://github.com/trueos/lumina-i18n/archive/v1.0.0-Release.tar.gz
 Patch0: lumina-1.0.0-defaults.patch
@@ -173,8 +177,28 @@ Group:              Graphical desktop/KDE
 This package provides lumina-fileinfo, which is an
 advanced desktop file (menu) editor.
 
+%package mediaplayer
+Summary:            Media player for Lumina Desktop
+Group:              Graphical desktop/KDE
+
+%description mediaplayer
+This package provides lumina-mediaplayer, which is a simple
+media player.
+
+%package xdg-entry
+Summary:            Desktop file creator for Lumina Desktop
+Group:              Graphical desktop/KDE
+
+%description xdg-entry
+This package provides lumina-xdg-entry, a
+Desktop file creator for the Lumina Desktop
+
 %prep
+%if "%{patchlevel}" != ""
 %setup -qn lumina-%{ver}%{?patchlevel:-p%{patchlevel}} -a 1
+%else
+%setup -qn lumina-%{ver} -a 1
+%endif
 %apply_patches
 qmake-qt5 CONFIG+=configure PREFIX=%{_prefix} LIBPREFIX=%{_libdir} L_LIBDIR=%{_libdir} L_ETCDIR=%{_sysconfdir}
 
@@ -197,6 +221,8 @@ done
 %files -f lumina-desktop.lang
 %{_bindir}/lumina-desktop
 %{_bindir}/start-lumina-desktop
+%{_mandir}/man8/lumina-desktop.8*
+%{_mandir}/man8/start-lumina-desktop.8*
 %{_sysconfdir}/luminaDesktop.conf.dist
 %{_datadir}/pixmaps/Lumina-DE.png
 %{_datadir}/xsessions/Lumina-DE.desktop
@@ -239,6 +265,9 @@ done
 %{_datadir}/wallpapers/Lumina-DE/Lumina_Wispy_red.jpg
 %{_datadir}/applications/lumina-support.desktop
 %dir %{_datadir}/lumina-desktop/i18n
+%{_datadir}/icons/material-design-dark
+%{_datadir}/icons/material-design-light
+%{_datadir}/lumina-desktop/themes
 
 %files archiver
 %{_bindir}/lumina-archiver
@@ -260,6 +289,14 @@ done
 %{_datadir}/pixmaps/Insight-FileManager.png
 %{_datadir}/applications/lumina-fm.desktop
 
+%files mediaplayer
+%{_bindir}/lumina-mediaplayer
+%{_datadir}/applications/lumina-mediaplayer.desktop
+
+%files xdg-entry
+%{_bindir}/lumina-xdg-entry
+%{_datadir}/applications/lumina-xdg-entry.desktop
+
 %files screenshot -f lumina-screenshot.lang
 %{_bindir}/lumina-screenshot
 %{_datadir}/applications/lumina-screenshot.desktop
@@ -276,6 +313,7 @@ done
 %{_bindir}/lte
 %{_bindir}/lumina-textedit
 %{_datadir}/applications/lumina-textedit.desktop
+%{_datadir}/lumina-desktop/syntax_rules
 
 %files xconfig -f lumina-xconfig.lang
 %{_bindir}/lumina-xconfig
