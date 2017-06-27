@@ -218,6 +218,8 @@ for i in *.qm; do
 	echo "%lang($L) %%{_datadir}/lumina-desktop/i18n/$i" >>$SRC/$F.lang
 done
 
+[ "%{_mandir}" != "%{_prefix}/man" ] && mv %{buildroot}%{_prefix}/man %{buildroot}%{_mandir}
+
 %files -f lumina-desktop.lang
 %{_bindir}/lumina-desktop
 %{_bindir}/start-lumina-desktop
@@ -252,6 +254,7 @@ done
 %{_datadir}/lumina-desktop/themes/Lumina-default.qss.template
 %{_datadir}/lumina-desktop/themes/Glass.qss.template
 %{_datadir}/lumina-desktop/themes/None.qss.template
+%{_datadir}/lumina-desktop/themes/DarkGlass.qss.template
 %dir %{_datadir}/lumina-desktop/menu-scripts
 %{_datadir}/lumina-desktop/menu-scripts/ls.json.sh
 %dir %{_datadir}/wallpapers/Lumina-DE
@@ -267,7 +270,6 @@ done
 %dir %{_datadir}/lumina-desktop/i18n
 %{_datadir}/icons/material-design-dark
 %{_datadir}/icons/material-design-light
-%{_datadir}/lumina-desktop/themes
 
 %files archiver
 %{_bindir}/lumina-archiver
@@ -275,6 +277,7 @@ done
 
 %files open -f lumina-open.lang
 %{_bindir}/lumina-open
+%{_mandir}/man1/lumina-open.1*
 
 %files calculator
 %{_bindir}/lumina-calculator
