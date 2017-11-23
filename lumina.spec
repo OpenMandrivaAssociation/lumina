@@ -1,5 +1,5 @@
 %define debug_package %{nil}
-%define ver 1.3.0
+%define ver 1.4.0
 %define patchlevel %{nil}
 
 Name: lumina
@@ -32,6 +32,7 @@ BuildRequires: cmake(Qt5X11Extras)
 BuildRequires: pkgconfig(xcb-ewmh)
 BuildRequires: pkgconfig(xcb-atom)
 BuildRequires: pkgconfig(xcb-image)
+BuildRequires: pkgconfig(poppler-qt5)
 Obsoletes: %{mklibname LuminaUtils 1} < %{EVRD}
 Obsoletes: %{mklibname -d LuminaUtils} < %{EVRD}
 
@@ -47,6 +48,7 @@ Requires: %{name}-info = %{EVRD}
 Requires: %{name}-textedit = %{EVRD}
 Requires: %{name}-xconfig = %{EVRD}
 Requires: %{name}-fileinfo = %{EVRD}
+Requires: %{name}-pdf = %{EVRD}
 # FIXME is this configurable?
 Requires: fluxbox
 
@@ -168,6 +170,13 @@ This package provides lumina-xconfig, which is a simple
 multi-head aware display configuration tool for configuring
 the X server.
 
+%package pdf
+Summary:            PDF viewer for Lumina Desktop
+Group:              Graphical desktop/KDE
+
+%description pdf
+This package provides lumina-pdf, which is a
+PDF viewer for the Lumina Desktop.
 
 %package fileinfo
 Summary:            Desktop file editor for Lumina Desktop
@@ -224,7 +233,6 @@ done
 %files -f lumina-desktop.lang
 %{_bindir}/lumina-desktop
 %{_bindir}/start-lumina-desktop
-%{_mandir}/man8/lumina-desktop.8*
 %{_mandir}/man8/start-lumina-desktop.8*
 %{_sysconfdir}/luminaDesktop.conf.dist
 %{_datadir}/pixmaps/Lumina-DE.png
@@ -237,18 +245,6 @@ done
 %{_datadir}/lumina-desktop/fluxbox-keys
 %{_datadir}/lumina-desktop/Login.ogg
 %{_datadir}/lumina-desktop/Logout.ogg
-%dir %{_datadir}/lumina-desktop/colors
-%{_datadir}/lumina-desktop/colors/Lumina-Red.qss.colors
-%{_datadir}/lumina-desktop/colors/Lumina-Green.qss.colors
-%{_datadir}/lumina-desktop/colors/Lumina-Purple.qss.colors
-%{_datadir}/lumina-desktop/colors/Lumina-Gold.qss.colors
-%{_datadir}/lumina-desktop/colors/Lumina-Glass.qss.colors
-%{_datadir}/lumina-desktop/colors/PCBSD10-Default.qss.colors
-%{_datadir}/lumina-desktop/colors/Black.qss.colors
-%{_datadir}/lumina-desktop/colors/Blue-Light.qss.colors
-%{_datadir}/lumina-desktop/colors/Grey-Dark.qss.colors
-%{_datadir}/lumina-desktop/colors/Solarized-Dark.qss.colors
-%{_datadir}/lumina-desktop/colors/Solarized-Light.qss.colors
 %{_datadir}/lumina-desktop/globs2
 %{_datadir}/lumina-desktop/low-battery.ogg
 %dir %{_datadir}/lumina-desktop/themes
@@ -258,23 +254,22 @@ done
 %{_datadir}/lumina-desktop/themes/DarkGlass.qss.template
 %dir %{_datadir}/lumina-desktop/menu-scripts
 %{_datadir}/lumina-desktop/menu-scripts/ls.json.sh
-%dir %{_datadir}/wallpapers/Lumina-DE
-%{_datadir}/wallpapers/Lumina-DE/Lumina_Wispy_blue-grey.jpg
-%{_datadir}/wallpapers/Lumina-DE/Lumina_Wispy_blue-grey-zoom.jpg
-%{_datadir}/wallpapers/Lumina-DE/Lumina_Wispy_grey-blue.jpg
-%{_datadir}/wallpapers/Lumina-DE/Lumina_Wispy_grey-blue-zoom.jpg
-%{_datadir}/wallpapers/Lumina-DE/Lumina_Wispy_gold.jpg
-%{_datadir}/wallpapers/Lumina-DE/Lumina_Wispy_green.jpg
-%{_datadir}/wallpapers/Lumina-DE/Lumina_Wispy_purple.jpg
-%{_datadir}/wallpapers/Lumina-DE/Lumina_Wispy_red.jpg
 %{_datadir}/applications/lumina-support.desktop
 %dir %{_datadir}/lumina-desktop/i18n
 %{_datadir}/icons/material-design-dark
 %{_datadir}/icons/material-design-light
+%{_mandir}/man1/lumina-desktop.1*
+# Should this be separate? It's not strictly required...
+%{_bindir}/lthemeengine
+%{_libdir}/qt5/plugins/platformthemes/liblthemeengine.so
+%{_libdir}/qt5/plugins/styles/liblthemeengine-style.so
+%{_datadir}/applications/lthemeengine.desktop
+%{_datadir}/lthemeengine
 
 %files archiver
 %{_bindir}/lumina-archiver
 %{_datadir}/applications/lumina-archiver.desktop
+%{_mandir}/man1/lumina-archiver.1*
 
 %files open -f lumina-open.lang
 %{_bindir}/lumina-open
@@ -283,46 +278,61 @@ done
 %files calculator
 %{_bindir}/lumina-calculator
 %{_datadir}/applications/lumina-calculator.desktop
+%{_mandir}/man1/lumina-calculator.1*
 
 %files config -f lumina-config.lang
 %{_bindir}/lumina-config
 %{_datadir}/applications/lumina-config.desktop
+%{_mandir}/man1/lumina-config.1*
 
 %files fm -f lumina-fm.lang
 %{_bindir}/lumina-fm
 %{_datadir}/pixmaps/Insight-FileManager.png
 %{_datadir}/applications/lumina-fm.desktop
+%{_mandir}/man1/lumina-fm.1*
 
 %files mediaplayer
 %{_bindir}/lumina-mediaplayer
 %{_datadir}/applications/lumina-mediaplayer.desktop
+%{_mandir}/man1/lumina-mediaplayer.1*
 
 %files xdg-entry
 %{_bindir}/lumina-xdg-entry
 %{_datadir}/applications/lumina-xdg-entry.desktop
+%{_mandir}/man1/lumina-xdg-entry.1*
 
 %files screenshot -f lumina-screenshot.lang
 %{_bindir}/lumina-screenshot
 %{_datadir}/applications/lumina-screenshot.desktop
+%{_mandir}/man1/lumina-screenshot.1*
 
 %files search -f lumina-search.lang
 %{_bindir}/lumina-search
 %{_datadir}/applications/lumina-search.desktop
+%{_mandir}/man1/lumina-search.1*
 
 %files info -f lumina-info.lang
 %{_bindir}/lumina-info
 %{_datadir}/applications/lumina-info.desktop
+%{_mandir}/man1/lumina-info.1*
 
 %files textedit -f lumina-textedit.lang
 %{_bindir}/lte
 %{_bindir}/lumina-textedit
 %{_datadir}/applications/lumina-textedit.desktop
 %{_datadir}/lumina-desktop/syntax_rules
+%{_mandir}/man1/lumina-textedit.1*
 
 %files xconfig -f lumina-xconfig.lang
 %{_bindir}/lumina-xconfig
 %{_datadir}/applications/lumina-xconfig.desktop
+%{_mandir}/man1/lumina-xconfig.1*
 
 %files fileinfo -f lumina-fileinfo.lang
 %{_bindir}/lumina-fileinfo
 %{_datadir}/applications/lumina-fileinfo.desktop
+%{_mandir}/man1/lumina-fileinfo.1*
+
+%files pdf
+%{_bindir}/lumina-pdf
+%{_datadir}/applications/lumina-pdf.desktop
