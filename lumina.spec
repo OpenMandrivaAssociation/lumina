@@ -25,6 +25,7 @@ BuildRequires: cmake(Qt5Concurrent)
 BuildRequires: cmake(Qt5Gui)
 BuildRequires: cmake(Qt5Widgets)
 BuildRequires: cmake(Qt5Svg)
+BuildRequires: %{_lib}qt5themesupport-static-devel
 BuildRequires: cmake(Qt5Multimedia)
 BuildRequires: cmake(Qt5MultimediaWidgets)
 BuildRequires: cmake(Qt5Network)
