@@ -1,10 +1,10 @@
 %define debug_package %{nil}
 %define ver 1.4.0
-%define patchlevel %{nil}
+%define patchlevel 1
 
 Name: lumina
 Version: %{ver}%{?patchlevel:p%{patchlevel}}
-Release: 2
+Release: 1
 %if "%{patchlevel}" != ""
 Source0: https://github.com/trueos/lumina/archive/v%{ver}%{?patchlevel:-p%{patchlevel}}.tar.gz
 %else
