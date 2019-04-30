@@ -1,6 +1,6 @@
 %define debug_package %{nil}
-%define ver 1.4.0
-%define patchlevel 1
+%define ver 1.5.0
+%define patchlevel %{nil}
 
 Name: lumina
 Version: %{ver}%{?patchlevel:p%{patchlevel}}
@@ -87,6 +87,14 @@ Group:              Graphical desktop/KDE
 This package provides lumina-archiver, which handles opening of
 tar and zip files
 
+%package photo
+Summary:            Photo viewer for the Lumina Desktop
+Group:              Graphical desktop/KDE
+
+%description photo
+This package provides lumina-photo, a photo viewer for the
+Lumina Desktop.
+
 %package open
 Summary:            xdg-open style utility for Lumina Desktop
 Group:              Graphical desktop/KDE
@@ -96,14 +104,6 @@ This package provides lumina-open, which handles opening of
 files and URLs according to the system-wide mimetype association.
 It also provides an optional selector if more than one application
 is assigned with the given url or file type.
-
-%package calculator
-Summary:            Calculator for Lumina Desktop
-Group:              Graphical desktop/KDE
-
-%description calculator
-This package provides lumina-calculator, a calculator for the
-Lumina desktop
 
 %package config
 Summary:            Configuration utility for Lumina Desktop
@@ -174,14 +174,6 @@ This package provides lumina-xconfig, which is a simple
 multi-head aware display configuration tool for configuring
 the X server.
 
-%package pdf
-Summary:            PDF viewer for Lumina Desktop
-Group:              Graphical desktop/KDE
-
-%description pdf
-This package provides lumina-pdf, which is a
-PDF viewer for the Lumina Desktop.
-
 %package fileinfo
 Summary:            Desktop file editor for Lumina Desktop
 Group:              Graphical desktop/KDE
@@ -198,14 +190,6 @@ Suggests:           pianobar
 %description mediaplayer
 This package provides lumina-mediaplayer, which is a simple
 media player.
-
-%package xdg-entry
-Summary:            Desktop file creator for Lumina Desktop
-Group:              Graphical desktop/KDE
-
-%description xdg-entry
-This package provides lumina-xdg-entry, a
-Desktop file creator for the Lumina Desktop
 
 %prep
 %if "%{patchlevel}" != ""
@@ -239,7 +223,6 @@ done
 %{_bindir}/start-lumina-desktop
 %{_mandir}/man8/start-lumina-desktop.8*
 %{_sysconfdir}/luminaDesktop.conf.dist
-%{_datadir}/pixmaps/Lumina-DE.png
 %{_datadir}/xsessions/Lumina-DE.desktop
 %dir %{_datadir}/lumina-desktop
 %{_datadir}/lumina-desktop/compton.conf
@@ -258,13 +241,16 @@ done
 %{_datadir}/lumina-desktop/themes/DarkGlass.qss.template
 %dir %{_datadir}/lumina-desktop/menu-scripts
 %{_datadir}/lumina-desktop/menu-scripts/ls.json.sh
+%{_datadir}/lumina-desktop/menu-scripts/README.md
 %{_datadir}/applications/lumina-support.desktop
 %dir %{_datadir}/lumina-desktop/i18n
 %{_datadir}/icons/material-design-dark
 %{_datadir}/icons/material-design-light
+%{_datadir}/icons/hicolor/scalable/apps/Lumina-DE.png
 %{_mandir}/man1/lumina-desktop.1*
 # Should this be separate? It's not strictly required...
 %{_bindir}/lthemeengine
+%{_bindir}/lthemeengine-sstest
 %{_libdir}/qt5/plugins/platformthemes/liblthemeengine.so
 %{_libdir}/qt5/plugins/styles/liblthemeengine-style.so
 %{_datadir}/applications/lthemeengine.desktop
@@ -279,11 +265,6 @@ done
 %{_bindir}/lumina-open
 %{_mandir}/man1/lumina-open.1*
 
-%files calculator
-%{_bindir}/lumina-calculator
-%{_datadir}/applications/lumina-calculator.desktop
-%{_mandir}/man1/lumina-calculator.1*
-
 %files config -f lumina-config.lang
 %{_bindir}/lumina-config
 %{_datadir}/applications/lumina-config.desktop
@@ -291,19 +272,15 @@ done
 
 %files fm -f lumina-fm.lang
 %{_bindir}/lumina-fm
-%{_datadir}/pixmaps/Insight-FileManager.png
 %{_datadir}/applications/lumina-fm.desktop
+%{_datadir}/icons/hicolor/scalable/apps/Insight-FileManager.png
 %{_mandir}/man1/lumina-fm.1*
 
 %files mediaplayer
 %{_bindir}/lumina-mediaplayer
 %{_datadir}/applications/lumina-mediaplayer.desktop
+%{_datadir}/applications/lumina-mediaplayer-pandora.desktop
 %{_mandir}/man1/lumina-mediaplayer.1*
-
-%files xdg-entry
-%{_bindir}/lumina-xdg-entry
-%{_datadir}/applications/lumina-xdg-entry.desktop
-%{_mandir}/man1/lumina-xdg-entry.1*
 
 %files screenshot -f lumina-screenshot.lang
 %{_bindir}/lumina-screenshot
@@ -337,6 +314,8 @@ done
 %{_datadir}/applications/lumina-fileinfo.desktop
 %{_mandir}/man1/lumina-fileinfo.1*
 
-%files pdf
-%{_bindir}/lumina-pdf
-%{_datadir}/applications/lumina-pdf.desktop
+%files photo
+%{_bindir}/lumina-photo
+%{_datadir}/applications/lumina-photo.desktop
+%{_mandir}/man1/lumina-photo.1.xz
+
