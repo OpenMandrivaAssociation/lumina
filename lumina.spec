@@ -36,6 +36,7 @@ BuildRequires: cmake(Qt5X11Extras)
 BuildRequires: pkgconfig(xcb-ewmh)
 BuildRequires: pkgconfig(xcb-atom)
 BuildRequires: pkgconfig(xcb-image)
+BuildRequires: pkgconfig(xcursor)
 BuildRequires: pkgconfig(poppler-qt5)
 Obsoletes: %{mklibname LuminaUtils 1} < %{EVRD}
 Obsoletes: %{mklibname -d LuminaUtils} < %{EVRD}
