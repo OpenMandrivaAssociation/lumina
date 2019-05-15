@@ -44,7 +44,6 @@ Obsoletes: %{mklibname -d LuminaUtils} < %{EVRD}
 # Desktop requirements
 Requires: %{name}-open = %{EVRD}
 Requires: %{name}-archiver = %{EVRD}
-#Requires: %{name}-calculator = %{EVRD}
 Requires: %{name}-config = %{EVRD}
 Requires: %{name}-fm = %{EVRD}
 Requires: %{name}-screenshot = %{EVRD}
@@ -53,7 +52,6 @@ Requires: %{name}-info = %{EVRD}
 Requires: %{name}-textedit = %{EVRD}
 Requires: %{name}-xconfig = %{EVRD}
 Requires: %{name}-fileinfo = %{EVRD}
-Requires: %{name}-pdf = %{EVRD}
 # FIXME is this configurable?
 Requires: fluxbox
 
