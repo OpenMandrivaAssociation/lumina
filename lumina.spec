@@ -8,7 +8,7 @@ Release: 1
 %if "%{patchlevel}" != ""
 Source0: https://github.com/trueos/lumina/archive/v%{ver}%{?patchlevel:-p%{patchlevel}}.tar.gz
 %else
-Source0: https://github.com/trueos/lumina/archive/v%{ver}.tar.gz
+Source0: https://github.com/trueos/lumina/archive/v%{ver}/%{name}-%{ver}.tar.gz
 %endif
 # No 1.1.0 or even 1.2.0 release as of May 26, 2017
 Source1: https://github.com/trueos/lumina-i18n/archive/v1.0.0-Release.tar.gz
