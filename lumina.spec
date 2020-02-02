@@ -1,5 +1,5 @@
 %define debug_package %{nil}
-%define ver 1.5.0
+%define ver 1.6.0
 %define patchlevel %{nil}
 
 Name: lumina
@@ -8,7 +8,7 @@ Release: 1
 %if "%{patchlevel}" != ""
 Source0: https://github.com/trueos/lumina/archive/v%{ver}%{?patchlevel:-p%{patchlevel}}.tar.gz
 %else
-Source0: https://github.com/trueos/lumina/archive/v%{ver}.tar.gz
+Source0: https://github.com/trueos/lumina/archive/v%{ver}/%{name}-%{ver}.tar.gz
 %endif
 # No 1.1.0 or even 1.2.0 release as of May 26, 2017
 Source1: https://github.com/trueos/lumina-i18n/archive/v1.0.0-Release.tar.gz
@@ -37,6 +37,7 @@ BuildRequires: pkgconfig(xcb-ewmh)
 BuildRequires: pkgconfig(xcb-atom)
 BuildRequires: pkgconfig(xcb-image)
 BuildRequires: pkgconfig(xcursor)
+BuildRequires: pkgconfig(xdamage)
 BuildRequires: pkgconfig(poppler-qt5)
 Obsoletes: %{mklibname LuminaUtils 1} < %{EVRD}
 Obsoletes: %{mklibname -d LuminaUtils} < %{EVRD}
@@ -316,5 +317,5 @@ done
 %files photo
 %{_bindir}/lumina-photo
 %{_datadir}/applications/lumina-photo.desktop
-%{_mandir}/man1/lumina-photo.1.xz
+%{_mandir}/man1/lumina-photo.1.*
 
