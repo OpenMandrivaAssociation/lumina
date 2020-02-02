@@ -317,5 +317,5 @@ done
 %files photo
 %{_bindir}/lumina-photo
 %{_datadir}/applications/lumina-photo.desktop
-%{_mandir}/man1/lumina-photo.1.xz
+%{_mandir}/man1/lumina-photo.1.*
 
