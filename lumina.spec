@@ -210,15 +210,10 @@ qmake-qt5 CONFIG+=configure PREFIX=%{_prefix} LIBPREFIX=%{_libdir} L_LIBDIR=%{_l
 %install
 %make_install INSTALL_ROOT="%{buildroot}"
 
-install -d %{buildroot}%{_datadir}/%{name}/i18n
-for i in `find . -type d -name i18n`
-do
- install -m0644 -D $i/*.qm -t %{buildroot}%{_datadir}/%{name}/i18n/
-done
 
 [ "%{_mandir}" != "%{_prefix}/man" ] && mv %{buildroot}%{_prefix}/man %{buildroot}%{_mandir}
 
-%files -f lumina-desktop.lang
+%files
 %{_bindir}/lumina-desktop
 %{_bindir}/lumina-checkpass
 %{_bindir}/lumina-pingcursor
@@ -263,16 +258,16 @@ done
 %{_datadir}/applications/lumina-archiver.desktop
 %{_mandir}/man1/lumina-archiver.1*
 
-%files open -f lumina-open.lang
+%files open
 %{_bindir}/lumina-open
 %{_mandir}/man1/lumina-open.1*
 
-%files config -f lumina-config.lang
+%files config
 %{_bindir}/lumina-config
 %{_datadir}/applications/lumina-config.desktop
 %{_mandir}/man1/lumina-config.1*
 
-%files fm -f lumina-fm.lang
+%files fm
 %{_bindir}/lumina-fm
 %{_datadir}/applications/lumina-fm.desktop
 %{_datadir}/icons/hicolor/scalable/apps/Insight-FileManager.png
@@ -284,34 +279,34 @@ done
 %{_datadir}/applications/lumina-mediaplayer-pandora.desktop
 %{_mandir}/man1/lumina-mediaplayer.1*
 
-%files screenshot -f lumina-screenshot.lang
+%files screenshot
 %{_bindir}/lumina-screenshot
 %{_datadir}/applications/lumina-screenshot.desktop
 %{_mandir}/man1/lumina-screenshot.1*
 
-%files search -f lumina-search.lang
+%files search
 %{_bindir}/lumina-search
 %{_datadir}/applications/lumina-search.desktop
 %{_mandir}/man1/lumina-search.1*
 
-%files info -f lumina-info.lang
+%files info
 %{_bindir}/lumina-info
 %{_datadir}/applications/lumina-info.desktop
 %{_mandir}/man1/lumina-info.1*
 
-%files textedit -f lumina-textedit.lang
+%files textedit
 %{_bindir}/lte
 %{_bindir}/lumina-textedit
 %{_datadir}/applications/lumina-textedit.desktop
 %{_datadir}/lumina-desktop/syntax_rules
 %{_mandir}/man1/lumina-textedit.1*
 
-%files xconfig -f lumina-xconfig.lang
+%files xconfig
 %{_bindir}/lumina-xconfig
 %{_datadir}/applications/lumina-xconfig.desktop
 %{_mandir}/man1/lumina-xconfig.1*
 
-%files fileinfo -f lumina-fileinfo.lang
+%files fileinfo
 %{_bindir}/lumina-fileinfo
 %{_datadir}/applications/lumina-fileinfo.desktop
 %{_mandir}/man1/lumina-fileinfo.1*
