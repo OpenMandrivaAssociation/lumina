@@ -12,6 +12,8 @@ Source0: https://github.com/trueos/lumina/archive/v%{ver}/%{name}-%{ver}.tar.gz
 %endif
 Patch0: lumina-1.0.0-defaults.patch
 Patch1: lumina-1.1.0p1-no-isystem-usr-include.patch
+# issue https://github.com/lumina-desktop/lumina/issues/771
+Patch2: lumina-1.6.1-fix-install-checkpass.patch
 Summary: The Lumina Desktop Environment
 URL: http://lumina-desktop.org/
 License: BSD
