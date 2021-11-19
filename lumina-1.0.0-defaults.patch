@@ -1,16 +1,16 @@
---- lumina-1.4.0/src-qt5/core/lumina-desktop/defaults/luminaDesktop.conf.0000~	2017-11-21 17:21:47.000000000 +0100
-+++ lumina-1.4.0/src-qt5/core/lumina-desktop/defaults/luminaDesktop.conf	2017-11-23 21:46:19.377228134 +0100
-@@ -24,29 +24,46 @@ session_playlogoutaudio=true #[true/fals
- # *.desktop files provide better support for input formats, and are recommended
- #Note: the last "ifexists" entry has the highest priority for each session utility
+diff -uraN lumina-1.6.1/src-qt5/core/lumina-desktop/defaults/luminaDesktop.conf omv-lumina-1.6.1/src-qt5/core/lumina-desktop/defaults/luminaDesktop.conf
+--- lumina-1.6.1/src-qt5/core/lumina-desktop/defaults/luminaDesktop.conf	2021-10-02 21:05:49.000000000 +0200
++++ omv-lumina-1.6.1/src-qt5/core/lumina-desktop/defaults/luminaDesktop.conf	2021-11-19 16:17:03.127838025 +0100
+@@ -27,29 +27,44 @@
+ session_default_terminal_ifexists=qterminal.desktop
+ session_default_terminal_ifexists=lumina-terminal.desktop
  session_default_terminal_ifexists=xterm.desktop
 +session_default_terminal_ifexists=org.kde.konsole.desktop
 +session_default_terminal_ifexists=qterminal.desktop
- session_default_terminal_ifexists=lumina-terminal.desktop
  session_default_filemanager=lumina-fm.desktop
  session_default_webbrowser_ifexists=chromium-browser.desktop
  session_default_webbrowser_ifexists=firefox.desktop
- session_default_webbrowser_ifexists=qupzilla.desktop
+ session_default_webbrowser_ifexists=org.kde.falkon.desktop
 +session_default_email_ifexists=org.kde.kmail.desktop
  session_default_email_ifexists=trojita.desktop
  
@@ -19,43 +19,39 @@
 +mime_default_text/*_ifexists=org.kde.kwrite.desktop
 +mime_default_text/*_ifexists=org.kde.kate.desktop
  mime_default_text/*_ifexists=lumina-textedit.desktop
- mime_default_audio/*_ifexists=lumina-mediaplayer.desktop
  mime_default_audio/*_ifexists=vlc.desktop
- mime_default_video/*_ifexists=lumina-mediaplayer.desktop
  mime_default_video/*_ifexists=vlc.desktop
-+mime_default_application/zip_ifexists=org.kde.ark.desktop
- mime_default_application/zip_ifexists=lumina-archiver.desktop
+ mime_default_image/*_ifexists=phototonic.desktop
+ mime_default_unknown/*=lumina-textedit.desktop
+ mime_default_application/x-shellscript=lumina-textedit.desktop
+-mime_default_application/pdf_ifexists=okular.desktop
 +mime_default_application/pdf_ifexists=org.kde.okular.desktop
  mime_default_application/pdf_ifexists=lumina-pdf.desktop
-+mime_default_application/x-compressed-tar_ifexists=org.kde.ark.desktop
+ mime_default_application/zip_ifexists=lumina-archiver.desktop
++mime_default_application/zip_ifexists=org.kde.ark.desktop
  mime_default_application/x-compressed-tar_ifexists=lumina-archiver.desktop
 +mime_default_application/x-bzip-compressed-tar_ifexists=org.kde.ark.desktop
  mime_default_application/x-bzip-compressed-tar_ifexists=lumina-archiver.desktop
-+mime_default_application/x-lrzip-compressed-tar_ifexists=org.kde.ark.desktop
  mime_default_application/x-lrzip-compressed-tar_ifexists=lumina-archiver.desktop
-+mime_default_application/x-lzma-compressed-tar_ifexists=org.kde.ark.desktop
++mime_default_application/x-lrzip-compressed-tar_ifexists=org.kde.ark.desktop
  mime_default_application/x-lzma-compressed-tar_ifexists=lumina-archiver.desktop
-+mime_default_application/x-xz-compressed-tar_ifexists=org.kde.ark.desktop
++mime_default_application/x-lzma-compressed-tar_ifexists=org.kde.ark.desktop
  mime_default_application/x-xz-compressed-tar_ifexists=lumina-archiver.desktop
-+mime_default_application/x-tar_ifexists=org.kde.ark.desktop
++mime_default_application/x-xz-compressed-tar_ifexists=org.kde.ark.desktop
  mime_default_application/x-tar_ifexists=lumina-archiver.desktop
++mime_default_application/x-tar_ifexists=org.kde.ark.desktop
 +mime_default_unknown/*=org.kde.kwrite.desktop
 +mime_default_unknown/*=org.kde.kate.desktop
- mime_default_unknown/*=lumina-textedit.desktop
 +mime_default_application/x-shellscript=org.kde.kwrite.desktop
 +mime_default_application/x-shellscript=org.kde.kate.desktop
- mime_default_application/x-shellscript=lumina-textedit.desktop
  
  #THEME SETTINGS
-@@ -89,10 +106,10 @@ favorites_add_ifexists=firefox.desktop
+ theme_fluxbox=lumina-dark #Name of the WM theme to use
+@@ -93,6 +108,7 @@
  favorites_add_ifexists=chromium-browser.desktop
- favorites_add_ifexists=qupzilla.desktop
+ favorites_add_ifexists=org.kde.falkon.desktop
  favorites_add_ifexists=thunderbird.desktop
 +favorites_add_ifexists=kmail.desktop
  favorites_add_ifexists=trojita.desktop
  favorites_add_ifexists=smplayer.desktop
  favorites_add_ifexists=vlc.desktop
--favorites_add_ifexists=pithos.desktop
- favorites_add_ifexists=~/Documents
- favorites_add_ifexists=~/Downloads
- favorites_add_ifexists=~/Pictures
