@@ -1,11 +1,12 @@
---- lumina-1.1.0-p1/src-qt5/OS-detect.pri.omv~	2016-10-25 23:47:57.206308218 +0200
-+++ lumina-1.1.0-p1/src-qt5/OS-detect.pri	2016-10-25 23:48:06.537257653 +0200
-@@ -82,7 +82,7 @@ isEmpty(OS){
+diff -uraN lumina-1.6.1/src-qt5/OS-detect.pri omv-lumina-1.6.1/src-qt5/OS-detect.pri
+--- lumina-1.6.1/src-qt5/OS-detect.pri	2021-10-02 21:05:49.000000000 +0200
++++ omv-lumina-1.6.1/src-qt5/OS-detect.pri	2021-11-19 16:30:13.222725064 +0100
+@@ -99,7 +99,7 @@
    message( $$MSG )
  
    # Setup the dirs needed to find/load libraries
 -  INCLUDEPATH +=$${PREFIX}/include 
 +  #INCLUDEPATH +=$${PREFIX}/include 
+   isEmpty(LIBPREFIX){ LIBPREFIX=$${PREFIX}/lib }
  
    # If the detailed install variables are not set - create them from the general vars
-   isEmpty(L_BINDIR){ L_BINDIR = $${PREFIX}/bin }
