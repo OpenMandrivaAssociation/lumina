@@ -1,5 +1,5 @@
 %define debug_package %{nil}
-%define ver 1.6.0
+%define ver 1.6.1
 %define patchlevel %{nil}
 
 Name: lumina
@@ -10,8 +10,6 @@ Source0: https://github.com/trueos/lumina/archive/v%{ver}%{?patchlevel:-p%{patch
 %else
 Source0: https://github.com/trueos/lumina/archive/v%{ver}/%{name}-%{ver}.tar.gz
 %endif
-# No 1.1.0 or even 1.2.0 release as of May 26, 2017
-Source1: https://github.com/trueos/lumina-i18n/archive/v1.0.0-Release.tar.gz
 Patch0: lumina-1.0.0-defaults.patch
 Patch1: lumina-1.1.0p1-no-isystem-usr-include.patch
 Summary: The Lumina Desktop Environment
@@ -56,8 +54,10 @@ Requires: %{name}-fileinfo = %{EVRD}
 # FIXME is this configurable?
 Requires: fluxbox
 
-Suggests: qupzilla
-Suggests: kmail
+Requires: la-capitaine-icon-theme
+
+Recommends: falkon
+Recommends: kmail
 
 %description
 The Lumina Desktop Environment is a lightweight system interface designed
@@ -136,7 +136,6 @@ or a single window after a configurable delay.
 Optionally the window border can be hidden when taking a
 screenshot of a single window.
 
-
 %package search
 Summary:            Search utility for Lumina Desktop
 Group:              Graphical desktop/KDE
@@ -146,7 +145,6 @@ This package provides lumina-search, which is a simple
 search utility that allows to search for applications or
 files and directories in the home directory and launch
 or open them.
-
 
 %package info
 Summary:            Basic information utility for Lumina Desktop
@@ -201,25 +199,17 @@ media player.
 qmake-qt5 CONFIG+=configure PREFIX=%{_prefix} LIBPREFIX=%{_libdir} L_LIBDIR=%{_libdir} L_ETCDIR=%{_sysconfdir}
 
 %build
-%make
+%make_build
 
 %install
-%make install INSTALL_ROOT="%{buildroot}"
-SRC="`pwd`"
-cd "%{buildroot}"%{_datadir}/lumina-desktop
-mkdir i18n
-cd i18n
-tar xf $SRC/lumina-i18n*/dist/lumina-i18n.txz
-for i in *.qm; do
-	F="`echo $i |cut -d_ -f1`"
-	L="`echo $i |cut -d_ -f2- |cut -d. -f1`"
-	echo "%lang($L) %%{_datadir}/lumina-desktop/i18n/$i" >>$SRC/$F.lang
-done
+%make_install INSTALL_ROOT="%{buildroot}"
 
 [ "%{_mandir}" != "%{_prefix}/man" ] && mv %{buildroot}%{_prefix}/man %{buildroot}%{_mandir}
 
 %files -f lumina-desktop.lang
 %{_bindir}/lumina-desktop
+%{_bindir}/lumina-checkpass
+%{_bindir}/lumina-pingcursor
 %{_bindir}/start-lumina-desktop
 %{_mandir}/man8/start-lumina-desktop.8*
 %{_sysconfdir}/luminaDesktop.conf.dist
