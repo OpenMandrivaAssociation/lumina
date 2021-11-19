@@ -191,9 +191,9 @@ media player.
 
 %prep
 %if "%{patchlevel}" != ""
-%setup -qn lumina-%{ver}%{?patchlevel:-p%{patchlevel}} -a 1
+%setup -qn lumina-%{ver}%{?patchlevel:-p%{patchlevel}}
 %else
-%setup -qn lumina-%{ver} -a 1
+%setup -qn lumina-%{ver}
 %endif
 %autopatch -p1
 qmake-qt5 CONFIG+=configure PREFIX=%{_prefix} LIBPREFIX=%{_libdir} L_LIBDIR=%{_libdir} L_ETCDIR=%{_sysconfdir}
