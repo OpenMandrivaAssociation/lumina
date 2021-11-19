@@ -210,6 +210,12 @@ qmake-qt5 CONFIG+=configure PREFIX=%{_prefix} LIBPREFIX=%{_libdir} L_LIBDIR=%{_l
 %install
 %make_install INSTALL_ROOT="%{buildroot}"
 
+install -d %{buildroot}%{_datadir}/%{name}/i18n
+for i in `find . -type d -name i18n`
+do
+ install -m0644 -D $i/*.qm -t %{buildroot}%{_datadir}/%{name}/i18n/
+done
+
 [ "%{_mandir}" != "%{_prefix}/man" ] && mv %{buildroot}%{_prefix}/man %{buildroot}%{_mandir}
 
 %files -f lumina-desktop.lang
