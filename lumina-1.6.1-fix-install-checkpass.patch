@@ -1,0 +1,12 @@
+--- src-qt5/core/lumina-checkpass/lumina-checkpass.pro.orig	2021-10-04 01:21:46.239515440 +0300
++++ src-qt5/core/lumina-checkpass/lumina-checkpass.pro	2021-10-04 01:22:26.100834380 +0300
+@@ -12,7 +12,7 @@
+ 
+ SOURCES += main.c
+ 
+-perms.path = $$DESTDIR$${PREFIX}/sbin
+-perms.extra = "chmod 4555 $$DESTDIR$${PREFIX}/sbin/lumina-checkpass"
++perms.path = $(INSTALL_ROOT)$$DESTDIR$${PREFIX}/sbin
++perms.extra = "chmod 4555 $(INSTALL_ROOT)$$DESTDIR$${PREFIX}/sbin/lumina-checkpass"
+ 
+ INSTALLS += target perms
