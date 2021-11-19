@@ -199,7 +199,9 @@ media player.
 %else
 %setup -qn lumina-%{ver}
 %endif
-%autopatch -p1
+%patch0 -p1
+%patch1 -p1
+%patch2 -p0
 qmake-qt5 CONFIG+=configure PREFIX=%{_prefix} LIBPREFIX=%{_libdir} L_LIBDIR=%{_libdir} L_ETCDIR=%{_sysconfdir}
 
 %build
