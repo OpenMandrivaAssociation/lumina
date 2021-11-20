@@ -215,7 +215,6 @@ qmake-qt5 CONFIG+=configure PREFIX=%{_prefix} LIBPREFIX=%{_libdir} L_LIBDIR=%{_l
 
 %files
 %{_bindir}/lumina-desktop
-%{_bindir}/lumina-checkpass
 %{_bindir}/lumina-pingcursor
 %{_bindir}/start-lumina-desktop
 %{_mandir}/man8/start-lumina-desktop.8*
@@ -240,10 +239,10 @@ qmake-qt5 CONFIG+=configure PREFIX=%{_prefix} LIBPREFIX=%{_libdir} L_LIBDIR=%{_l
 %{_datadir}/lumina-desktop/menu-scripts/ls.json.sh
 %{_datadir}/lumina-desktop/menu-scripts/README.md
 %{_datadir}/applications/lumina-support.desktop
-%dir %{_datadir}/lumina-desktop/i18n
+#dir #{_datadir}/lumina-desktop/i18n
 %{_datadir}/icons/material-design-dark
 %{_datadir}/icons/material-design-light
-%{_datadir}/icons/hicolor/scalable/apps/Lumina-DE.png
+#{_datadir}/icons/hicolor/scalable/apps/Lumina-DE.png
 %{_mandir}/man1/lumina-desktop.1*
 # Should this be separate? It's not strictly required...
 %{_bindir}/lthemeengine
