@@ -202,7 +202,12 @@ media player.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p0
-qmake-qt5 CONFIG+=configure PREFIX=%{_prefix} LIBPREFIX=%{_libdir} L_LIBDIR=%{_libdir} L_ETCDIR=%{_sysconfdir}
+
+# The "fur" locale is broken (only empty translations) and not known by glibc
+# Let's kill it for now
+find . -name "*_fur.*" |xargs rm
+
+qmake-qt5 CONFIG+=configure CONFIG+=WITH_I18N PREFIX=%{_prefix} LIBPREFIX=%{_libdir} L_LIBDIR=%{_libdir} L_ETCDIR=%{_sysconfdir}
 
 %build
 %make_build
@@ -210,16 +215,21 @@ qmake-qt5 CONFIG+=configure PREFIX=%{_prefix} LIBPREFIX=%{_libdir} L_LIBDIR=%{_l
 %install
 %make_install INSTALL_ROOT="%{buildroot}"
 
-
 [ "%{_mandir}" != "%{_prefix}/man" ] && mv %{buildroot}%{_prefix}/man %{buildroot}%{_mandir}
 
-%files
+for i in l-archiver l-fileinfo l-mediap l-photo l-screenshot l-te lumina-config lumina-desktop lumina-fm lumina-info lumina-open lumina-search lumina-xconfig; do
+	%find_lang $i --with-qt
+done
+
+%files -f lumina-desktop.lang
+%{_sbindir}/lumina-checkpass
 %{_bindir}/lumina-desktop
 %{_bindir}/lumina-pingcursor
 %{_bindir}/start-lumina-desktop
 %{_mandir}/man8/start-lumina-desktop.8*
 %{_sysconfdir}/luminaDesktop.conf.dist
 %{_datadir}/xsessions/Lumina-DE.desktop
+%{_datadir}/icons/lumina-icons
 %dir %{_datadir}/lumina-desktop
 %{_datadir}/lumina-desktop/compton.conf
 %{_datadir}/lumina-desktop/desktop-background.jpg
@@ -238,6 +248,10 @@ qmake-qt5 CONFIG+=configure PREFIX=%{_prefix} LIBPREFIX=%{_libdir} L_LIBDIR=%{_l
 %dir %{_datadir}/lumina-desktop/menu-scripts
 %{_datadir}/lumina-desktop/menu-scripts/ls.json.sh
 %{_datadir}/lumina-desktop/menu-scripts/README.md
+%{_datadir}/lumina-desktop/Lumina-DE.png
+%dir %{_datadir}/lumina-desktop/i18n
+%{_datadir}/lumina-desktop/screensavers
+%{_datadir}/lumina-desktop/theme.cfg
 %{_datadir}/applications/lumina-support.desktop
 #dir #{_datadir}/lumina-desktop/i18n
 %{_datadir}/icons/material-design-dark
@@ -251,67 +265,68 @@ qmake-qt5 CONFIG+=configure PREFIX=%{_prefix} LIBPREFIX=%{_libdir} L_LIBDIR=%{_l
 %{_libdir}/qt5/plugins/styles/liblthemeengine-style.so
 %{_datadir}/applications/lthemeengine.desktop
 %{_datadir}/lthemeengine
+%{_datadir}/pixmaps/Lumina-DE.png
 
-%files archiver
+%files archiver -f l-archiver.lang
 %{_bindir}/lumina-archiver
 %{_datadir}/applications/lumina-archiver.desktop
 %{_mandir}/man1/lumina-archiver.1*
 
-%files open
+%files open -f lumina-open.lang
 %{_bindir}/lumina-open
 %{_mandir}/man1/lumina-open.1*
 
-%files config
+%files config -f lumina-config.lang
 %{_bindir}/lumina-config
 %{_datadir}/applications/lumina-config.desktop
 %{_mandir}/man1/lumina-config.1*
 
-%files fm
+%files fm -f lumina-fm.lang
 %{_bindir}/lumina-fm
 %{_datadir}/applications/lumina-fm.desktop
 #{_datadir}/icons/hicolor/scalable/apps/Insight-FileManager.png
 %{_mandir}/man1/lumina-fm.1*
+%{_datadir}/pixmaps/Insight-FileManager.png
 
-%files mediaplayer
+%files mediaplayer -f l-mediap.lang
 %{_bindir}/lumina-mediaplayer
 %{_datadir}/applications/lumina-mediaplayer.desktop
 %{_datadir}/applications/lumina-mediaplayer-pandora.desktop
 %{_mandir}/man1/lumina-mediaplayer.1*
 
-%files screenshot
+%files screenshot -f l-screenshot.lang
 %{_bindir}/lumina-screenshot
 %{_datadir}/applications/lumina-screenshot.desktop
 %{_mandir}/man1/lumina-screenshot.1*
 
-%files search
+%files search -f lumina-search.lang
 %{_bindir}/lumina-search
 %{_datadir}/applications/lumina-search.desktop
 %{_mandir}/man1/lumina-search.1*
 
-%files info
+%files info -f lumina-info.lang
 %{_bindir}/lumina-info
 %{_datadir}/applications/lumina-info.desktop
 %{_mandir}/man1/lumina-info.1*
 
-%files textedit
+%files textedit -f l-te.lang
 %{_bindir}/lte
 %{_bindir}/lumina-textedit
 %{_datadir}/applications/lumina-textedit.desktop
 %{_datadir}/lumina-desktop/syntax_rules
 %{_mandir}/man1/lumina-textedit.1*
 
-%files xconfig
+%files xconfig -f lumina-xconfig.lang
 %{_bindir}/lumina-xconfig
 %{_datadir}/applications/lumina-xconfig.desktop
 %{_mandir}/man1/lumina-xconfig.1*
 
-%files fileinfo
+%files fileinfo -f l-fileinfo.lang
 %{_bindir}/lumina-fileinfo
 %{_datadir}/applications/lumina-fileinfo.desktop
 %{_mandir}/man1/lumina-fileinfo.1*
 
-%files photo
+%files photo -f l-photo.lang
 %{_bindir}/lumina-photo
 %{_datadir}/applications/lumina-photo.desktop
 %{_mandir}/man1/lumina-photo.1.*
-
