@@ -269,7 +269,7 @@ qmake-qt5 CONFIG+=configure PREFIX=%{_prefix} LIBPREFIX=%{_libdir} L_LIBDIR=%{_l
 %files fm
 %{_bindir}/lumina-fm
 %{_datadir}/applications/lumina-fm.desktop
-%{_datadir}/icons/hicolor/scalable/apps/Insight-FileManager.png
+#{_datadir}/icons/hicolor/scalable/apps/Insight-FileManager.png
 %{_mandir}/man1/lumina-fm.1*
 
 %files mediaplayer
