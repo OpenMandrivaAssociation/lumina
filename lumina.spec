@@ -223,7 +223,6 @@ for i in l-archiver l-fileinfo l-mediap l-photo l-screenshot l-te lumina-config 
 done
 
 %files -f lumina-desktop.lang
-%{_sbindir}/lumina-checkpass
 %{_bindir}/lumina-desktop
 %{_bindir}/lumina-pingcursor
 %{_bindir}/start-lumina-desktop
@@ -266,7 +265,6 @@ done
 %{_libdir}/qt5/plugins/styles/liblthemeengine-style.so
 %{_datadir}/applications/lthemeengine.desktop
 %{_datadir}/lthemeengine
-%{_datadir}/pixmaps/Lumina-DE.png
 
 %files archiver -f l-archiver.lang
 %{_bindir}/lumina-archiver
