@@ -1,5 +1,5 @@
 %define debug_package %{nil}
-%define ver 1.6.1
+%define ver 1.6.2
 %define patchlevel %{nil}
 
 Name: lumina
