@@ -1,6 +1,6 @@
-diff -uraN lumina-1.6.1/src-qt5/core/lumina-desktop/defaults/luminaDesktop.conf omv-lumina-1.6.1/src-qt5/core/lumina-desktop/defaults/luminaDesktop.conf
---- lumina-1.6.1/src-qt5/core/lumina-desktop/defaults/luminaDesktop.conf	2021-10-02 21:05:49.000000000 +0200
-+++ omv-lumina-1.6.1/src-qt5/core/lumina-desktop/defaults/luminaDesktop.conf	2021-11-19 16:17:03.127838025 +0100
+diff -uraN lumina-1.6.2/src-qt5/core/lumina-desktop/defaults/luminaDesktop.conf omv-lumina-1.6.2/src-qt5/core/lumina-desktop/defaults/luminaDesktop.conf
+--- lumina-1.6.2/src-qt5/core/lumina-desktop/defaults/luminaDesktop.conf	2021-12-26 03:33:45.000000000 +0100
++++ omv-lumina-1.6.2/src-qt5/core/lumina-desktop/defaults/luminaDesktop.conf	2021-12-26 15:55:51.727636538 +0100
 @@ -27,29 +27,44 @@
  session_default_terminal_ifexists=qterminal.desktop
  session_default_terminal_ifexists=lumina-terminal.desktop
@@ -46,7 +46,7 @@ diff -uraN lumina-1.6.1/src-qt5/core/lumina-desktop/defaults/luminaDesktop.conf 
 +mime_default_application/x-shellscript=org.kde.kate.desktop
  
  #THEME SETTINGS
- theme_fluxbox=lumina-dark #Name of the WM theme to use
+ #theme_fluxbox=lumina-dark #Name of the WM theme to use
 @@ -93,6 +108,7 @@
  favorites_add_ifexists=chromium-browser.desktop
  favorites_add_ifexists=org.kde.falkon.desktop
