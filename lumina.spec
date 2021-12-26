@@ -285,7 +285,7 @@ done
 %{_datadir}/applications/lumina-fm.desktop
 #{_datadir}/icons/hicolor/scalable/apps/Insight-FileManager.png
 %{_mandir}/man1/lumina-fm.1*
-%{_datadir}/pixmaps/Insight-FileManager.png
+#{_datadir}/pixmaps/Insight-FileManager.png
 
 %files mediaplayer -f l-mediap.lang
 %{_bindir}/lumina-mediaplayer
