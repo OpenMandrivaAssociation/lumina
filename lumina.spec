@@ -223,9 +223,9 @@ for i in l-archiver l-fileinfo l-mediap l-photo l-screenshot l-te lumina-config 
 done
 
 %files -f lumina-desktop.lang
-%{_sbindir}/lumina-checkpass
 %{_bindir}/lumina-desktop
 %{_bindir}/lumina-pingcursor
+%{_bindir}/lumina-sudo
 %{_bindir}/start-lumina-desktop
 %{_mandir}/man8/start-lumina-desktop.8*
 %{_sysconfdir}/luminaDesktop.conf.dist
@@ -266,7 +266,7 @@ done
 %{_libdir}/qt5/plugins/styles/liblthemeengine-style.so
 %{_datadir}/applications/lthemeengine.desktop
 %{_datadir}/lthemeengine
-%{_datadir}/pixmaps/Lumina-DE.png
+%{_datadir}/pixmaps/Lumina-DE.svg
 
 %files archiver -f l-archiver.lang
 %{_bindir}/lumina-archiver
@@ -287,7 +287,7 @@ done
 %{_datadir}/applications/lumina-fm.desktop
 #{_datadir}/icons/hicolor/scalable/apps/Insight-FileManager.png
 %{_mandir}/man1/lumina-fm.1*
-%{_datadir}/pixmaps/Insight-FileManager.png
+%{_datadir}/pixmaps/Insight-FileManager.svg
 
 %files mediaplayer -f l-mediap.lang
 %{_bindir}/lumina-mediaplayer
