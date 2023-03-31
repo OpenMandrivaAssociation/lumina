@@ -4,7 +4,7 @@
 
 Name: lumina
 Version: 1.6.2
-Release: 1
+Release: 2
 %if "%{patchlevel}" != ""
 Source0: https://github.com/trueos/lumina/archive/v%{ver}%{?patchlevel:-p%{patchlevel}}.tar.gz
 %else
