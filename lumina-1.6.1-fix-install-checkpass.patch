@@ -1,5 +1,5 @@
---- src-qt5/OS-detect.pri.orig	2019-08-21 23:11:53.854636464 +0300
-+++ src-qt5/OS-detect.pri	2019-08-21 23:12:42.679155144 +0300
+--- a/src-qt5/OS-detect.pri.orig	2019-08-21 23:11:53.854636464 +0300
++++ b/src-qt5/OS-detect.pri	2019-08-21 23:12:42.679155144 +0300
 @@ -128,7 +128,7 @@
    QMAKE_DISTCLEAN += -r ./.build
  
@@ -9,8 +9,8 @@
  
    #some other compile time flags
    CONFIG *= c++11
---- src-qt5/core/lumina-checkpass/lumina-checkpass.pro.orig	2021-10-04 01:21:46.239515440 +0300
-+++ src-qt5/core/lumina-checkpass/lumina-checkpass.pro	2021-10-04 01:22:26.100834380 +0300
+--- a/src-qt5/core/lumina-checkpass/lumina-checkpass.pro.orig	2021-10-04 01:21:46.239515440 +0300
++++ b/src-qt5/core/lumina-checkpass/lumina-checkpass.pro	2021-10-04 01:22:26.100834380 +0300
 @@ -12,7 +12,7 @@
  
  SOURCES += main.c

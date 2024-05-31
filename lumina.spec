@@ -1,15 +1,11 @@
 %define debug_package %{nil}
 %define ver 1.6.2
-%define patchlevel %{nil}
+#define patchlevel %{nil}
 
 Name: lumina
 Version: 1.6.2
 Release: 4
-%if "%{patchlevel}" != ""
 Source0: https://github.com/trueos/lumina/archive/v%{ver}%{?patchlevel:-p%{patchlevel}}.tar.gz
-%else
-Source0: https://github.com/trueos/lumina/archive/v%{ver}/%{name}-%{ver}.tar.gz
-%endif
 Patch0: lumina-1.0.0-defaults.patch
 Patch1: lumina-1.1.0p1-no-isystem-usr-include.patch
 # issue https://github.com/lumina-desktop/lumina/issues/771
@@ -195,14 +191,7 @@ This package provides lumina-mediaplayer, which is a simple
 media player.
 
 %prep
-%if "%{patchlevel}" != ""
-%setup -qn lumina-%{ver}%{?patchlevel:-p%{patchlevel}}
-%else
-%setup -qn lumina-%{ver}
-%endif
-%patch0 -p1
-%patch1 -p1
-%patch2 -p0
+%autosetup -p1 -n lumina-%{ver}%{?patchlevel:-p%{patchlevel}}
 
 # The "fur" locale is broken (only empty translations) and not known by glibc
 # Let's kill it for now
